@@ -7,6 +7,13 @@ export class AppController {
 
   constructor(private readonly authService: AuthService) {}
 
+  @Get('/')
+  getHello() {
+    return {
+      status: 'Your API is ready!'
+    };
+  }
+
   @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Request() req) {

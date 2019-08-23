@@ -10,19 +10,14 @@ export class UsersService {
     this.users = [
       {
         userId: 1,
-        username: 'john',
-        password: 'changeme',
+        username: 'admin',
+        password: 'supersecret',
       },
       {
         userId: 2,
-        username: 'chris',
+        username: 'hoang',
         password: 'secret',
-      },
-      {
-        userId: 3,
-        username: 'maria',
-        password: 'guess',
-      },
+      }
     ];
   }
 

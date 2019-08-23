@@ -23,6 +23,9 @@ export class ConfigService {
       NODE_ENV: Joi.string()
         .valid(['development', 'production', 'staging'])
         .default('development'),
+      
+      AUTH_JWT_SECRET: Joi.string().required(),
+      AUTH_JWT_EXPIRED_IN: Joi.string().required(),
 
       AWS_ACCESSKEYID:Joi.string().required(),
       AWS_SECRETACCESSKEY:Joi.string().required(),
@@ -48,6 +51,14 @@ export class ConfigService {
 
   get(key: string): string {
     return this.envConfig[key];
+  }
+
+  get AUTH_JWT_SECRET(): string {
+    return this.envConfig.AUTH_JWT_SECRET
+  }
+
+  get AUTH_JWT_EXPIRED_IN(): string | number {
+    return this.envConfig.AUTH_JWT_EXPIRED_IN
   }
 
   get SQL_TYPE(): 'mysql' | 'mariadb' {
