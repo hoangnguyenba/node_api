@@ -9,19 +9,19 @@ export class UsersService {
   constructor() {
     this.users = [
       {
-        userId: 1,
-        username: 'admin',
+        id: 1,
+        email: 'admin@foundation.com',
         password: 'supersecret',
       },
       {
-        userId: 2,
-        username: 'hoang',
+        id: 2,
+        email: 'hoang@foundation.com',
         password: 'secret',
       }
     ];
   }
 
   async findOne(username: string): Promise<User | undefined> {
-    return this.users.find(user => user.username === username);
+    return this.users.find(user => user.email === username);
   }
 }
