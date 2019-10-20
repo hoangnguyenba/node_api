@@ -3,7 +3,7 @@ import * as Joi from '@hapi/joi';
 import * as fs from 'fs';
 
 export interface EnvConfig {
-  SQL_TYPE?: 'mysql' | 'mariadb',
+  DB_CONNECTION?: 'mysql' | 'mariadb';
   [key: string]: string
 }
 export class ConfigService {
@@ -27,16 +27,12 @@ export class ConfigService {
       AUTH_JWT_SECRET: Joi.string().required(),
       AUTH_JWT_EXPIRED_IN: Joi.string().required(),
 
-      AWS_ACCESSKEYID:Joi.string().required(),
-      AWS_SECRETACCESSKEY:Joi.string().required(),
-      AWS_REGION:Joi.string().required(),
-
-      SQL_TYPE: Joi.string().valid(['mysql', 'mariadb']).default('mysql'),
-      SQL_HOST:Joi.string().required(),
-      SQL_PORT:Joi.number().required(),
-      SQL_DATABASE:Joi.string().required(),
-      SQL_USERNAME:Joi.string().required(),
-      SQL_PASSWORD:Joi.string().required(),
+      DB_CONNECTION: Joi.string().required(),
+      DB_HOST:Joi.string().required(),
+      DB_PORT:Joi.number().required(),
+      DB_DATABASE:Joi.string().required(),
+      DB_USERNAME:Joi.string().required(),
+      DB_PASSWORD:Joi.string().required(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
@@ -61,11 +57,11 @@ export class ConfigService {
     return this.envConfig.AUTH_JWT_EXPIRED_IN
   }
 
-  get SQL_TYPE(): 'mysql' | 'mariadb' {
-    return this.envConfig.SQL_TYPE
+  get DB_CONNECTION(): 'mysql' | 'mariadb' {
+    return this.envConfig.DB_CONNECTION
   }
 
-  get SQL_PORT(): number {
+  get DB_PORT(): number {
     return Number(this.envConfig.SQL_PORT)
   }
 }
