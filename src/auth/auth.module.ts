@@ -5,12 +5,13 @@ import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigService } from '../config';
+import { ConfigModule, ConfigService } from '../config';
 import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
     UsersModule,
+    ConfigModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       useFactory: (config) => ({
